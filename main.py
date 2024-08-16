@@ -104,7 +104,7 @@ def main():
         futures = []
         with ThreadPoolExecutor(max_workers=3) as executor:
             for scan_ip in scan_ips:
-                output_file = os.path.join(home_path, f'logs/{datetime.now().strftime("%Y%m%d")}-{scan_id}-{scan_ip}.txt')
+                output_file = os.path.join(home_path, f'logs/{datetime.now().strftime("%Y%m%d")}_{scan_id}_{scan_ip}.txt')
                 if str(scan_ip) in exclude_lists:
                     excluded_scan_ips.append(str(scan_ip))
                 else:
