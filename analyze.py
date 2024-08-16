@@ -59,7 +59,8 @@ def analyze_logs(scan_id, scan_log_dir, scan_logfiles):
                     discovery_time = parts[4]
 
                     output.write(f'datetime="{datetime.now().strftime("%Y-%m-%d %H:%M:%S")}",'
-                                 f'ip="{ip}",port="{port}",proto="{protocol}",status="{status},reason="syn-ack",'
+                                 f'scan_id="{scan_id}",ip="{ip}",port="{port}",proto="{protocol}",'
+                                 f'status="{status},reason="syn-ack",'
                                  f'discovery_ime="{datetime.fromtimestamp(int(discovery_time)).strftime("%Y-%m-%d %H:%M:%S")}"\n')
 
                     if ip not in open_ports_ips:
