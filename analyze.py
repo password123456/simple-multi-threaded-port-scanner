@@ -99,6 +99,27 @@ def print_results(ret_scan_id, ret_count_logfiles, ret_output_filename, ret_open
     # send_to_your_WEBHOOK(message)
     print(message)
 
+    """
+    ------------------------------------------------
+    Scanning result for `rgA-X2EbN9CNxZ47`
+    ------------------------------------------------
+    
+    No Open Ports:
+            - 10.210.0.9
+            - 10.210.0.10
+            - 10.210.0.11
+    
+    Open Ports:
+            - 10.210.0.12 = [ 80, 443 ]
+            - 10.210.0.13 = [ 80, 443, 22, 3306 ]
+    
+    Outputs:
+            /data/portscan/logs/20240816_rgA-X2EbN9CNxZ47_result.log
+    
+    >> 2024-08-16 07:53:33
+    >> Total: 5
+    """
+
 
 def main():
     scan_id = '{PORT-SCAN-JOB_ID}'
