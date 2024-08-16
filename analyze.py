@@ -89,12 +89,15 @@ def print_results(ret_scan_id, ret_count_logfiles, ret_output_filename, ret_open
 
     body = f'Open Ports:\n{ret_open_ports_list}'
 
-    if ret_no_open_ports_list:
-        message = f'No Open Ports:\n\t- ' + '\n\t- '.join(ret_no_open_ports_list) + '\n\n' + body
-        message = f'{header}\n{message}\n{bottom}'
+    if isinstance(ret_no_open_ports_list, list):
+        message = f'No Open Ports:\n\t- ' + '\n\t- '.join(ret_no_open_ports_list) + '\n\n'
+    else:
+        message = f'No Open Ports:\n\t- {ret_no_open_ports_list}\n\n'
 
-        # send_to_your_WEBHOOK(message)
-        print(message)
+    message = f'{header}\n{message}{body}\n{bottom}'
+
+    # send_to_your_WEBHOOK(message)
+    print(message)
 
 
 def main():
@@ -112,9 +115,13 @@ def main():
     ret_scan_id, ret_count_logfiles, ret_output_filename, ret_open_ports_list, ret_no_open_ports_list \
         = analyze_logs(scan_id, scan_log_dir, scan_logfiles)
 
-    if all([ret_scan_id, ret_count_logfiles, ret_output_filename, ret_open_ports_list, ret_no_open_ports_list]):
-        print_results(ret_scan_id, ret_count_logfiles, ret_output_filename, ret_open_ports_list, ret_no_open_ports_list)
+    if len(ret_no_open_ports_list) == 0:
+        ret_no_open_ports_list = 'Not Found'
 
+    if all([ret_scan_id, ret_count_logfiles, ret_output_filename, ret_open_ports_list, ret_no_open_ports_list]):
+        print_result(ret_scan_id, ret_count_logfiles, ret_output_filename,
+                     ret_open_ports_list, ret_no_open_ports_list)
+        
 
 if __name__ == '__main__':
     try:
